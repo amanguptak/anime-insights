@@ -51,7 +51,7 @@ export function HomePage() {
             <span className="text-blue-500 dark:text-blue-400">
               Inspire
             </span> &{' '}
-            <button
+            {/* <button
               className="p-2 -mx-1 rounded-full transition-colors hover:bg-opacity-20"
               onClick={toggleTheme}
             >
@@ -60,7 +60,7 @@ export function HomePage() {
               ) : (
                 <Moon className="w-6 h-6 text-gray-600" />
               )}
-            </button>
+            </button> */}
             <span className="text-purple-500 dark:text-purple-400">
               Captivate
             </span>
