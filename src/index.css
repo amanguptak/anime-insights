@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 100% 65%;
+    --foreground: 215 32% 27%;
+    --primary: 30 100% 65%;
+    --secondary: 215 32% 27%;
+    --accent: 215 32% 27%;
+    --surface: 30 100% 65%;
+  }
+
+  :root[class~='dark'] {
+    --background: 230 25% 8%;
+    --foreground: 210 40% 98%;
+    --primary: 266 85% 58%;
+    --secondary: 333 100% 50%;
+    --accent: 190 90% 50%;
+    --surface: 230 30% 12%;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    background-image: radial-gradient(
+        circle at 0% 0%,
+        rgb(251 146 60 / 0.07),
+        transparent 35%
+      ),
+      radial-gradient(
+        circle at 100% 100%,
+        rgb(251 146 60 / 0.07),
+        transparent 35%
+      );
+  }
+}
+
+@layer components {
+  .hero-card {
+    @apply relative overflow-hidden rounded-2xl bg-surface/80 backdrop-blur-xl;
+    box-shadow: 0 0 0 1px rgba(30, 41, 59, 0.1),
+      0 8px 20px rgba(30, 41, 59, 0.1);
+  }
+
+  .anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    @apply gap-6;
+  }
+
+  .anime-card {
+    @apply relative overflow-hidden rounded-xl;
+    background: linear-gradient(
+      to bottom,
+      rgba(251, 146, 60, 0.05),
+      rgba(251, 146, 60, 0.02)
+    );
+    backdrop-filter: blur(10px);
+    transform-origin: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .anime-card:hover {
+    transform: scale(1.02) translateY(-4px);
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.2),
+      0 0 40px rgba(30, 41, 59, 0.1);
+  }
+
+  .nav-link {
+    @apply px-4 py-2 rounded-lg text-foreground/70 hover:text-foreground
+           transition-all duration-300 hover:bg-foreground/5 relative
+           flex items-center gap-2;
+  }
+
+  .nav-link.active {
+    @apply text-foreground bg-orange-400/20;
+  }
+
+  .nav-link.active::before {
+    content: '';
+    @apply absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 
+           bg-gradient-to-b from-orange-400 to-slate-800 rounded-r-full;
+  }
+
+  .search-bar {
+    @apply w-full px-6 py-4 pl-12 rounded-2xl text-lg
+           bg-surface/50 backdrop-blur-xl border border-foreground/10
+           placeholder:text-foreground/30 focus:outline-none
+           focus:ring-2 focus:ring-orange-400/30 transition-all;
+  }
+
+  .gradient-border {
+    position: relative;
+    &::before {
+      content: '';
+      @apply absolute inset-0 rounded-xl p-[1px];
+      background: linear-gradient(
+        45deg,
+        rgba(251, 146, 60, 0.5),
+        rgba(30, 41, 59, 0.5)
+      );
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+  }
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(251, 146, 60, 0.3) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-orange-400/30 rounded-full hover:bg-orange-400/50 transition-colors;
+}
